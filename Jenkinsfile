@@ -24,7 +24,7 @@ node{
 	
 	stage('Checkout'){
 		//Checkout Git repo
-		git url: , branch: 
+		git url: gitSourceRepo, branch: gitSorceBranch
 		//checkout scm
 	}
 	
