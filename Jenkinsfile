@@ -2,7 +2,7 @@ node{
 	
 	git url: 'https://github.com/ksubbarao/Beach-config.git', branch: 'master'
 	
-	def pipeline_properties = readProperties  file: 'pipeline.properties'
+	def pipeline_properties = readProperties file: 'pipeline.properties'
 	
 	def gitSourceRepo = pipeline_properties.GIT_REPO
 	def gitSorceBranch = pipeline_properties.GIT_BRANCH
