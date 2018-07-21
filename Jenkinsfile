@@ -37,7 +37,7 @@ node{
 	stage('Build Automation'){
 		
 		withEnv(["JAVA_HOME=${winJDK}"]){
-		bat "${mvnHome}\\mvn ${mvnGoals}"
+		bat "${mvnHome}\\mvn clean package"
 		}
 	}
 	
