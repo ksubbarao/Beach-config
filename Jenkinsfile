@@ -7,15 +7,16 @@ node{
 	def gitSourceRepo = pipeline_properties.GIT_REPO
 	def gitSorceBranch = pipeline_properties.GIT_BRANCH
 	
-	def mvnHome = tool pipeline_properties.MAVEN_INSTALLATION
-	mvnHome = mvnHome + '\\bin'
-	
-	def winJDK = tool pipeline_properties.JAVA_INSTALLATION
-	println mvnHome
+	def mavenTool = pipeline_properties.MAVEN_INSTALLATION
+	def jdkTool = pipeline_properties.JAVA_INSTALLATION
 	
 	def majorVersion = pipeline_properties.MAJOR_VERSION
 	def minorVersion = pipeline_properties.MINOR_VERSION
 	def patchVersion = pipeline_properties.PATCH_VERSION
+	
+	def mvnHome = tool mavenTool
+	mvnHome = mvnHome + '\\bin'
+	def winJDK = tool jdkTool
 	
 	env.versionNumber = majorVersion + '.' + minorVersion + '.' + patchVersion + '.' + BUILD_NUMBER
 	//env.versionNumber = [majorVersion,'.',minorVersion,'.', patchVersion, '.', BUILD_NUMBER].join()
