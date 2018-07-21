@@ -1,17 +1,31 @@
 node{
-	checkout scm
-	def mvnHome = tool 'Maven-3.5.4'
+	
+	git url: 'https://github.com/ksubbarao/Beach-config.git', branch: 'master'
+	
+	def pipeline_properties = readProperties  file: 'pipeline.properties'
+	
+	def gitSourceRepo = pipeline_properties.GIT_REPO
+	def gitSorceBranch = pipeline_properties.GIT_BRANCH
+	
+	def mvnHome = tool pipeline_properties.MAVEN_INSTALLATION
 	mvnHome = mvnHome + '\\bin'
-	def winJDK = tool 'JDK-1.3.1'
+	
+	def winJDK = tool pipeline_properties.JAVA_INSTALLATION
 	println mvnHome
 	
-	env.versionNumber = '1.0.0.' + BUILD_NUMBER
+	def majorVersion = pipeline_properties.MAJOR_VERSION
+	def minorVersion = pipeline_properties.MINOR_VERSION
+	def patchVersion = pipeline_properties.PATCH_VERSION
+	
+	env.versionNumber = majorVersion + '.' + minorVersion + '.' + patchVersion + '.' + BUILD_NUMBER
+	//env.versionNumber = [majorVersion,'.',minorVersion,'.', patchVersion, '.', BUILD_NUMBER].join()
+	
 	def server = Artifactory.server 'local_Artifactory'
 	
 	stage('Checkout'){
 		//Checkout Git repo
-		//git repo:'https://github.com/ksubbarao/Beach-resort.git', branch:'master'
-		checkout scm
+		git url: , branch: 
+		//checkout scm
 	}
 	
 	stage('Code coverage and Analysis'){
