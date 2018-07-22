@@ -61,4 +61,8 @@ node{
 		//server.upload spec: uploadSpec, buildInfo: buildInfo
 		server.publishBuildInfo buildInfo
 	}
+	
+	stage('Tomcat Deployment'){
+		build 'tomcat-deployment'
+	}
 }
