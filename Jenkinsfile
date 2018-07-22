@@ -60,7 +60,7 @@ node{
 		
 		//server.upload spec: uploadSpec, buildInfo: buildInfo
 		server.publishBuildInfo buildInfo
-		archiveArtifacts '*.war'
+		archiveArtifacts 'target/*.war'
 	}
 	
 	stage('Tomcat Deployment'){
